@@ -16,8 +16,8 @@ export const Web3ModalProvider = ({ children }) => {
     const metadata = {
       name: "Vortex Dapp",
       description: "An EVM liquidity lender and token launcher",
-      url: "https://vortexdapp.com",
-      icons: ["https://vortexdapp.com/favicon.ico"],
+      url: "https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/",
+      icons: ["https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app//favicon.ico"],
     };
 
     const sepoliaMainnet = {
