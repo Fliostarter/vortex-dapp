@@ -23,7 +23,7 @@ function Header({ connectWallet, isConnected, chainId }) {
     <header>
       <div className="header-content">
         <div className="div-logo">
-          <Link to="https://vortexdapp.com">
+          <Link to="https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/">
             <img
               src="https://i.imgur.com/XDHnW0R.png"
               alt="VortexLogo png"
@@ -40,7 +40,7 @@ function Header({ connectWallet, isConnected, chainId }) {
           {/* Navigation Menu */}
           <nav className={`menu ${isOpen ? "open" : ""}`}>
             <a
-              href="https://vortexdapp.com"
+              href="https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
             >
@@ -56,7 +56,7 @@ function Header({ connectWallet, isConnected, chainId }) {
               Trade
             </Link>
             <a
-              href="https://docs.vortexdapp.com"
+              href="https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
