@@ -413,7 +413,7 @@ function FactoryPage() {
         <p>
           If you have questions, please check our
           <a
-            href="https://docs.vortexdapp.com"
+            href="https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/tokens"
             target="_blank"
             rel="noopener noreferrer"
           >
