@@ -3,6 +3,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
 import MyFactoryJson from "../contracts/MyFactory.json";
+import PasswordGate from "../components/PasswordGate";
+
+export default function Launch() {
+  return (
+    <PasswordGate>
+      <div>
+        {/* ضع هنا المحتوى الأصلي لصفحة Launch */}
+      </div>
+    </PasswordGate>
+  );
+}
 import MyTokenJson from "../contracts/MyToken.json";
 import "./FactoryPage.css";
 import {
