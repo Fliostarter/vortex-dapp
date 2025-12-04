@@ -12,7 +12,7 @@ import {
   useWeb3ModalAccount,
 } from "@web3modal/ethers/react";
 import { Link } from "react-router-dom";
-import Header from "../components/PasswordGate.js";
+import PasswordGate from "../components/PasswordGate.js";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import { firestore } from "../components/firebaseConfig.js";
