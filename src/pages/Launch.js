@@ -3,17 +3,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
 import MyFactoryJson from "../contracts/MyFactory.json";
-import PasswordGate from "../components/PasswordGate";
-
-export default function Launch() {
-  return (
-    <PasswordGate>
-      <div>
-        {/* ضع هنا المحتوى الأصلي لصفحة Launch */}
-      </div>
-    </PasswordGate>
-  );
-}
 import MyTokenJson from "../contracts/MyToken.json";
 import "./FactoryPage.css";
 import {
@@ -23,6 +12,7 @@ import {
   useWeb3ModalAccount,
 } from "@web3modal/ethers/react";
 import { Link } from "react-router-dom";
+import Header from "../components/PasswordGate.js";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import { firestore } from "../components/firebaseConfig.js";
