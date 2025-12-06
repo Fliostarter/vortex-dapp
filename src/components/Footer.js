@@ -6,11 +6,11 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>Vortex Labs © 2024. All rights reserved.</p>
+        <p>Vortex Labs © 2025. All rights reserved.</p>
 
         {/* Twitter Link */}
         <a
-          href="https://x.com/vortexdapp"
+          href="https://t.me/Vortex_Dapp"
           className="icon-link"
           aria-label="Twitter"
         >
@@ -18,7 +18,7 @@ function Footer() {
         </a>
         {/* Telegram Link */}
         <a
-          href="https://t.me/vortexdapp"
+          href="https://t.me/Vortex_Dapp"
           className="icon-link"
           aria-label="Telegram"
         >
