@@ -551,7 +551,7 @@ function CombinedFactoryDashboard() {
           </a>
           or ask us on our
           <a
-            href="https://t.me/vortexdapp"
+            href="https://t.me/Vortex_Dapp"
             target="_blank"
             rel="noopener noreferrer"
           >
