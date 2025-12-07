@@ -7,7 +7,7 @@ const tasks = [
     description: "Join our Telegram Group",
     points: 10,
     category: "Social",
-    link: "https://t.me/vortexdapp", // Use full URL for external link
+    link: "https://t.me/Vortex_Dapp", // Use full URL for external link
   },
   {
     id: 2,
