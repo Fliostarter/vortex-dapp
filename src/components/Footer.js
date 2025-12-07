@@ -10,7 +10,7 @@ function Footer() {
 
         {/* Twitter Link */}
         <a
-          href="https://t.me/Vortex_Dapp"
+          href="https://x.com/vortexdapp"
           className="icon-link"
           aria-label="Twitter"
         >
