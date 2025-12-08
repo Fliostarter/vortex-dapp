@@ -413,7 +413,7 @@ function FactoryPage() {
         <p>
           If you have questions, please check our
           <a
-            href="https://vortexdapp.io/Tokenomics.html"
+            href="https://vortexdapp.io"
             target="_blank"
             rel="noopener noreferrer"
           >
