@@ -56,7 +56,7 @@ function Header({ connectWallet, isConnected, chainId }) {
               Trade
             </Link>
             <a
-              href="https://vortexdapp.io/"
+              href="https://vortexdapp.io/Tokenomics.html"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
