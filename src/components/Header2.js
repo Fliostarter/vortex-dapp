@@ -41,7 +41,7 @@ function Header2({ connectWallet, isConnected, chainId }) {
           {/* Navigation Menu */}
           <nav className={`menu ${isOpen ? "open" : ""}`}>
             <a
-              href="https://vortexdapp.io/"
+              href="https://x.com/Gafin_io"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
             >
