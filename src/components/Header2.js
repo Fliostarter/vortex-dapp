@@ -24,7 +24,7 @@ function Header2({ connectWallet, isConnected, chainId }) {
     <header>
       <div className="header-content">
         <div className="div-logo">
-          <Link to="https://vortexdapp.io/">
+          <Link to="https://x.com/Gafin_io">
             <img
               src="https://i.imgur.com/XDHnW0R.png"
               alt="VortexLogo png"
@@ -57,7 +57,7 @@ function Header2({ connectWallet, isConnected, chainId }) {
               Trade
             </Link>
             <a
-              href="https://vortex-dapp-c11we1hz5-kokos-projects-67b8b652.vercel.app/"
+              href="https://x.com/Gafin_io"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
