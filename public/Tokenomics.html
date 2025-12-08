@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VORTEX – Whitepaper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="VORTEX Initial Liquidity Launchpad – Web3 token launch protocol with fair launch, no vesting, and instant liquidity." />
+  <style>
+    :root {
+      --bg-dark: #050814;
+      --bg-card: rgba(10, 14, 30, 0.92);
+      --accent-pink: #ff3df2;
+      --accent-blue: #25e4ff;
+      --accent-purple: #7b5cff;
+      --text-main: #f5f7ff;
+      --text-muted: #b2bbd9;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top left, #24143f 0, #050814 55%)
+        fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glow-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 61, 242, 0.18), transparent 60%),
+        radial-gradient(circle at 85% 70%, rgba(37, 228, 255, 0.18), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(
+        120deg,
+        rgba(255, 61, 242, 0.22),
+        rgba(37, 228, 255, 0.1)
+      );
+      font-size: 12px;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      max-width: 520px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(3, 6, 20, 0.7);
+    }
+
+    .hero-card {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.7fr);
+      gap: 20px;
+      padding: 20px;
+      background: radial-gradient(circle at top, #130b33 0, #050814 52%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 61, 242, 0.16), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(37, 228, 255, 0.16), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-left,
+    .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 26px;
+      background: radial-gradient(circle at 30% 10%, #ff3df2, #25e4ff);
+      color: #fff;
+      box-shadow: 0 0 40px rgba(255, 61, 242, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .hero-left h2 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(5, 10, 30, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+    }
+
+    .hero-right-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(4, 7, 20, 0.88);
+      font-size: 13px;
+    }
+
+    .hero-right-card h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+
+    .hero-right-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: rgba(10, 14, 30, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+    }
+
+    .pill span {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    main {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 1.5fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 880px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    section {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    section h2 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    section h3 {
+      font-size: 15px;
+      margin: 8px 0 4px;
+    }
+
+    p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0 4px;
+    }
+
+    li {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .tokenomics-card {
+      background: radial-gradient(circle at top, #1b1040 0, #050814 60%);
+    }
+
+    .tokenomics-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .tokenomics-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .tokenomics-table th,
+    .tokenomics-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .tokenomics-table th {
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .tokenomics-image {
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .tokenomics-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(5, 10, 25, 0.95);
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 12px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-overlay"></div>
+
+  <div class="page">
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        VORTEX · WHITEPAPER
+      </div>
+      <h1 class="hero-title">Initial Liquidity Launchpad</h1>
+      <p class="hero-subtitle">
+        VORTEX is a next-generation Web3 launchpad focused on <b>instant DEX liquidity</b>,
+        <b>fair public distribution</b>, and <b>no vesting</b>—built for EVM-compatible chains.
+      </p>
+      <div class="hero-meta">
+        <span>Version 1.0</span>
+        <span>Updated: 2025</span>
+        <span>Website: <b>VortexDapp.io</b></span>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-left">
+          <!-- استبدل هذه الدائرة بشعارك إن أحببت -->
+          <div class="logo-placeholder">V</div>
+          <h2>VORTEX Protocol</h2>
+          <p>
+            A fully on-chain initial liquidity launch model that automates token
+            deployment, public sale, and liquidity provisioning in a single seamless flow.
+          </p>
+          <div class="hero-tags">
+            <span class="hero-tag">Multi-Chain</span>
+            <span class="hero-tag">No Vesting</span>
+            <span class="hero-tag">Fair Launch</span>
+            <span class="hero-tag">DeFi Native</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-right-card">
+            <h3>Token Snapshot</h3>
+            <div class="hero-right-grid">
+              <div class="pill">
+                <span>Ticker</span>
+                VRTX
+              </div>
+              <div class="pill">
+                <span>Total Supply</span>
+                100,000,000 VRTX
+              </div>
+              <div class="pill">
+                <span>Public Sale</span>
+                70%
+              </div>
+              <div class="pill">
+                <span>Vesting</span>
+                None (No vesting model)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="content">
+        <section id="introduction">
+          <h2>1. Introduction</h2>
+          <p>
+            Token launch infrastructure is a critical primitive for the Web3 ecosystem.
+            However, traditional launchpads are often plagued by opaque mechanics,
+            delayed liquidity, heavy vesting schedules, and centralized control.
+          </p>
+          <p>
+            VORTEX introduces an <b>Initial Liquidity Launch</b> model: a launchpad
+            that focuses on <b>immediate liquidity</b>, <b>simple distribution</b>, and
+            <b>trust-minimized smart contracts</b> across multiple EVM chains.
+          </p>
+        </section>
+
+        <section id="problem">
+          <h2>2. Problems in Traditional Launchpads</h2>
+          <h3>2.1 Structural Issues</h3>
+          <ul>
+            <li>
+              <b>Weak initial liquidity:</b> tokens list with shallow pools, causing extreme
+              volatility and slippage.
+            </li>
+            <li>
+              <b>Complex vesting:</b> multi-year lock-ups and unlock cliffs confuse investors
+              and distort price discovery.
+            </li>
+            <li>
+              <b>Centralized control:</b> teams or launchpads often control both raised funds
+              and LP, increasing rug-pull risk.
+            </li>
+            <li>
+              <b>High friction:</b> multi-step flows from sale to listing to LP creation
+              are slow and error-prone.
+            </li>
+          </ul>
+
+          <h3>2.2 Investor Perspective</h3>
+          <ul>
+            <li>
+              Unclear token allocations and unlock schedules.
+            </li>
+            <li>
+              Lack of transparent on-chain guarantees.
+            </li>
+            <li>
+              Poor alignment between teams, early investors, and the community.
+            </li>
+          </ul>
+        </section>
+
+        <section id="solution">
+          <h2>3. VORTEX Solution — Initial Liquidity Model</h2>
+          <p>
+            VORTEX restructures launches around a single core idea:
+            <b>liquidity is the first-class citizen.</b>
+          </p>
+          <ul>
+            <li>
+              <b>70% of supply</b> is allocated to a public sale accessible to everyone.
+            </li>
+            <li>
+              <b>Automatic LP creation:</b> after the sale, liquidity is deployed directly
+              to the DEX (e.g. Uniswap, PancakeSwap).
+            </li>
+            <li>
+              <b>Rug-resistant design:</b> LP can be locked via trusted lockers, limiting
+              the ability to withdraw liquidity.
+            </li>
+            <li>
+              <b>No vesting:</b> all VRTX allocations are freely transferable, supporting
+              clean price discovery.
+            </li>
+          </ul>
+        </section>
+
+        <section id="features">
+          <h2>4. Platform Features</h2>
+          <h3>4.1 Core Launchpad Features</h3>
+          <ul>
+            <li>One-click token deployment (ERC-20 and compatible standards).</li>
+            <li>Configurable sale parameters (cap, price, timing, whitelist modes).</li>
+            <li>Automatic DEX listing with initial liquidity provisioning.</li>
+            <li>Support for fair-launch and public-sale flows.</li>
+          </ul>
+
+          <h3>4.2 Multi-Chain Support</h3>
+          <p>
+            VORTEX is designed to operate across EVM chains such as:
+          </p>
+          <ul>
+            <li>BNB Chain</li>
+            <li>Ethereum Mainnet</li>
+            <li>Base</li>
+            <li>Arbitrum</li>
+            <li>Optimism</li>
+            <li>Polygon and others</li>
+          </ul>
+
+          <h3>4.3 Launchpad Governance</h3>
+          <p>
+            Over time, VRTX holders may participate in governance to decide:
+          </p>
+          <ul>
+            <li>Supported chains and DEX integrations.</li>
+            <li>Launchpad fee structures.</li>
+            <li>Curated “featured” projects and partner programs.</li>
+          </ul>
+        </section>
+
+        <section id="tokenomics" class="tokenomics-card">
+          <h2>5. Tokenomics</h2>
+          <p>
+            The VRTX token is the native asset of the VORTEX ecosystem. Its supply, allocation,
+            and distribution are intentionally simple and community-oriented.
+          </p>
+
+          <div class="tokenomics-grid">
+            <div>
+              <p><b>Total Supply:</b> <span class="highlight">100,000,000 VRTX</span></p>
+
+              <table class="tokenomics-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Allocation</th>
+                    <th>Amount (VRTX)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Public Sale</td>
+                    <td class="highlight">70%</td>
+                    <td>70,000,000</td>
+                  </tr>
+                  <tr>
+                    <td>Private Sale</td>
+                    <td>19%</td>
+                    <td>19,000,000</td>
+                  </tr>
+                  <tr>
+                    <td>Liquidity</td>
+                    <td>10%</td>
+                    <td>10,000,000</td>
+                  </tr>
+                  <tr>
+                    <td>Airdrop</td>
+                    <td>1%</td>
+                    <td>1,000,000</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p style="margin-top:6px;">
+                <b>Vesting:</b> none. All allocations are fully unlocked at TGE to keep
+                the model straightforward and transparent.
+              </p>
+            </div>
+
+            <!-- أضف صورة الإنفوجرافيك هنا -->
+            <div class="tokenomics-image">
+              <!-- استبدل tokenomics.png بمسار الصورة الحقيقي -->
+              <img src="tokenomics.png" alt="VORTEX Tokenomics Infographic" />
+            </div>
+          </div>
+        </section>
+
+        <section id="utility">
+          <h2>6. VRTX Utility</h2>
+          <p>VRTX is designed as a utility and coordination asset inside VORTEX:</p>
+          <ul>
+            <li>
+              <b>Governance:</b> voting on protocol upgrades, fee parameters, and
+              supported chains.
+            </li>
+            <li>
+              <b>Access tiers:</b> holding/staking VRTX may unlock higher allocation
+              tiers in future launches.
+            </li>
+            <li>
+              <b>Fee sharing (future-ready):</b> a portion of launchpad fees could be
+              directed to VRTX stakers.
+            </li>
+            <li>
+              <b>In-ecosystem utility:</b> discounts, whitelists, and reward boosts
+              for active participants.
+            </li>
+          </ul>
+        </section>
+
+        <section id="public-sale">
+          <h2>7. Public Sale Details</h2>
+          <p>
+            The public sale is designed as a fair launch event with wide access and
+            transparent parameters.
+          </p>
+          <ul>
+            <li>Allocation: <b>70% of total supply</b>.</li>
+            <li>Distribution: direct claim at TGE with no vesting.</li>
+            <li>Post-sale: automatic liquidity provisioning and DEX listing.</li>
+            <li>Goal: a broad, community-driven base of VRTX holders.</li>
+          </ul>
+        </section>
+
+        <section id="security">
+          <h2>8. Security</h2>
+          <p>
+            Security is a foundational requirement for VORTEX. All production deployments
+            will follow a rigorous review process:
+          </p>
+          <ul>
+            <li>Independent smart-contract audits.</li>
+            <li>Formal reviews of core launch, sale, and LP contracts.</li>
+            <li>Use of proven libraries and battle-tested standards.</li>
+            <li>LP lock mechanisms to reduce rug-pull vectors.</li>
+          </ul>
+        </section>
+
+        <section id="roadmap">
+          <h2>9. Roadmap</h2>
+          <h3>2025</h3>
+          <ul>
+            <li>Q1: Core protocol design & internal testnet.</li>
+            <li>Q2: Public alpha, early partner launches.</li>
+            <li>Q3: VRTX token launch and first major public sale.</li>
+            <li>Q4: Multi-chain deployment, governance experiments, staking design.</li>
+          </ul>
+
+          <h3>2026</h3>
+          <ul>
+            <li>VORTEX v2 with advanced launch types and fee routing.</li>
+            <li>Deeper integration with DeFi primitives and partner protocols.</li>
+            <li>Progressive decentralization of governance.</li>
+          </ul>
+        </section>
+
+        <section id="partnerships">
+          <h2>10. Partnerships</h2>
+          <p>
+            VORTEX aims to collaborate with launchpads, chains, and DeFi protocols
+            that share its vision of transparent, community-aligned token launches.
+          </p>
+          <ul>
+            <li><b>Huostarter:</b> strategic launch partner for VRTX and future projects.</li>
+            <li><b>Gems Launchpad:</b> marketing and distribution support.</li>
+            <li>
+              <b>EVM ecosystems:</b> BNB Chain, Base, Ethereum, Arbitrum and others as
+              primary deployment targets.
+            </li>
+          </ul>
+        </section>
+
+        <section id="conclusion">
+          <h2>11. Conclusion</h2>
+          <p>
+            VORTEX proposes a simple but powerful shift: put <b>liquidity first</b> and
+            remove unnecessary complexity from token launches.
+          </p>
+          <p>
+            With <b>no vesting</b>, <b>fair public allocation</b>, and
+            <b>automated DEX liquidity</b>, VORTEX is built to become a core primitive for
+            Web3 projects launching across EVM chains.
+          </p>
+          <p>
+            This document is a living specification and may evolve as the protocol,
+            community, and ecosystem grow.
+          </p>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section>
+          <h2>Quick Facts</h2>
+          <p><b>Name:</b> VORTEX</p>
+          <p><b>Ticker:</b> VRTX</p>
+          <p><b>Model:</b> Initial Liquidity Launchpad</p>
+          <p><b>Chains:</b> EVM (BNB, Ethereum, Base, Arbitrum, Optimism, Polygon…)</p>
+        </section>
+
+        <section>
+          <h2>Key Properties</h2>
+          <ul>
+            <li>No vesting model.</li>
+            <li>70% supply to public sale.</li>
+            <li>Automatic LP creation.</li>
+            <li>Rug-resistant liquidity lock.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Launchpad Highlights</h2>
+          <div class="chip-list">
+            <span class="chip">Initial Liquidity</span>
+            <span class="chip">Multi-Chain</span>
+            <span class="chip">Fair Launch</span>
+            <span class="chip">On-Chain</span>
+            <span class="chip">No Vesting</span>
+            <span class="chip">DeFi Native</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Contact & Links</h2>
+          <p>Website: <a href="https://vortexdapp.io" target="_blank">VortexDapp.io</a></p>
+          <!-- أضف روابط تليغرام / تويتر هنا عند الحاجة -->
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      © VORTEX Protocol – This whitepaper is for informational purposes only and
+      does not constitute financial advice.
+    </footer>
+  </div>
+</body>
+</html>
