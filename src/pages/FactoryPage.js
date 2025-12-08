@@ -103,8 +103,8 @@ const metadata = {
   name: "Vortex Dapp",
   description:
     "A dapp to create ERC20 tokens on any EVM chain, and get intiial LP without costs. ",
-  url: "https://vortexdapp.com",
-  icons: ["https://vortexdapp.com/favicon.ico"],
+  url: "https://vortexdapp.io/",
+  icons: ["https://vortexdapp.io/favicon.ico"],
 };
 
 const ethersConfig = defaultConfig({
