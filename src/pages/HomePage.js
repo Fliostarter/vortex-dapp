@@ -38,7 +38,7 @@ function HomePage() {
         metadata: {
           name: "Vortex Dapp",
           description: "An EVM liquidity lender and token launcher",
-          url: "https://vortexdapp.io/Tokenomics.html",
+          url: "https://vortexdapp.io/Tokens",
           icons: ["https://vortexdapp.io/favicon.ico"],
         },
         enableEIP6963: true, // Enable MetaMask
