@@ -26,7 +26,7 @@ function Footer() {
         </a>
         {/* Email Link */}
         <a
-          href="mailto:team@vortexdapp.com"
+          href="mailto:ceo@vortexdapp.io"
           className="icon-link"
           aria-label="Email"
         >
